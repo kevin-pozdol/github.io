@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kevin | Digital Transformation & Product Executive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #0d1b2a;
+      --navy-mid:  #162032;
+      --slate:     #2c3e50;
+      --gold:      #c9a84c;
+      --gold-lt:   #e0c278;
+      --cream:     #f5f0e8;
+      --cream-dk:  #ede6d8;
+      --text:      #1a1a2e;
+      --muted:     #6b7280;
+      --white:     #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 4rem;
+      background: rgba(13, 27, 42, 0.96);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold-lt); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0 4rem;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    /* thin vertical rule */
+    .hero-rule {
+      position: absolute;
+      left: 4rem;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, transparent 10%, var(--gold) 40%, var(--gold) 60%, transparent 90%);
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      max-width: 760px;
+      padding-left: 2.5rem;
+      animation: fadeUp 0.9s ease both;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+
+    .hero-name span {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .hero-title {
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.06em;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.9rem 2rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .hero-cta:hover {
+      background: var(--gold-lt);
+      transform: translateY(-2px);
+    }
+
+    .hero-cta svg { width: 14px; height: 14px; }
+
+    /* ── SECTIONS SHARED ── */
+    section {
+      padding: 7rem 4rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--slate);
+      margin-bottom: 1.2rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .stat-card {
+      border-left: 2px solid var(--gold);
+      padding-left: 1.25rem;
+    }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      line-height: 1.4;
+    }
+
+    /* ── HIGHLIGHTS ── */
+    #highlights {
+      background: var(--cream);
+    }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .highlight-card {
+      background: var(--white);
+      padding: 2rem;
+      border-top: 3px solid var(--gold);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(13,27,42,0.1);
+    }
+
+    .highlight-icon {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 1.2rem;
+      color: var(--gold);
+    }
+
+    .highlight-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .highlight-card p {
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--slate);
+    }
+
+    /* ── DOWNLOAD ── */
+    #download {
+      background: var(--navy);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #download::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    #download .section-title { color: var(--white); }
+    #download .section-label { justify-content: center; display: flex; }
+
+    .download-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      max-width: 500px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .download-btn:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .download-btn svg { width: 16px; height: 16px; }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--cream-dk);
+    }
+
+    .contact-grid {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: var(--slate);
+      font-size: 0.95rem;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .contact-item:hover { color: var(--navy); }
+
+    .contact-item:hover .contact-icon-wrap {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    .contact-icon-wrap {
+      width: 44px;
+      height: 44px;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .contact-icon-wrap svg { width: 18px; height: 18px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.05em;
+    }
+
+    footer .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--gold);
+      opacity: 0.6;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 2rem; }
+      .hero { padding: 0 2rem; }
+      section { padding: 5rem 2rem; }
+      #about { grid-template-columns: 1fr; gap: 3rem; }
+      .highlights-grid { grid-template-columns: 1fr 1fr; }
+      footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.75rem; text-align: center; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .highlights-grid { grid-template-columns: 1fr; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#hero">Kevin</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#highlights">Highlights</a></li>
+      <li><a href="#download">Career Doc</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-rule"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Digital Transformation &amp; Product Executive</p>
+      <h1 class="hero-name">Kevin<br /><span>[Last Name]</span></h1>
+      <p class="hero-title">Driving enterprise transformation &mdash; from strategy to execution</p>
+      <a href="#download" class="hero-cta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        Download Career Highlights
+      </a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-text reveal">
+      <p class="section-label">About</p>
+      <h2 class="section-title">Turning complex programs<br />into measurable outcomes</h2>
+      <p>
+        With over [X] years in financial services and enterprise technology, I specialize in leading
+        large-scale platform transformations, M&amp;A integrations, and customer experience initiatives
+        that span multiple business units and stakeholders.
+      </p>
+      <p>
+        My strength is bridging the gap between strategic vision and operational execution — building
+        the program structures, teams, and change management frameworks that make transformation
+        actually stick.
+      </p>
+      <p>
+        I bring a track record of delivering on complex, multi-workstream programs in regulated
+        industries, with a consistent focus on customer outcomes and sustainable process improvement.
+      </p>
+    </div>
+    <div class="about-stats reveal">
+      <div class="stat-card">
+        <div class="stat-number">[X]+</div>
+        <div class="stat-label">Years in Financial Services &amp; Technology</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">[X]</div>
+        <div class="stat-label">Enterprise Platforms Transformed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">[X]</div>
+        <div class="stat-label">Business Units Led Across Integrations</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">[X]M+</div>
+        <div class="stat-label">In Program Value Managed</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIGHLIGHTS -->
+  <section id="highlights">
+    <div class="reveal">
+      <p class="section-label">Career Highlights</p>
+      <h2 class="section-title">Selected accomplishments</h2>
+    </div>
+    <div class="highlights-grid">
+
+      <div class="highlight-card reveal">
+        <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/>
+        </svg>
+        <h3>Enterprise Platform Transformation</h3>
+        <p>
+          Led the multi-workstream migration of [X] legacy systems to a unified platform at [Company],
+          coordinating across origination, servicing, and remarketing business units simultaneously.
+        </p>
+      </div>
+
+      <div class="highlight-card reveal">
+        <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/>
+        </svg>
+        <h3>M&amp;A Integration &amp; Partner Onboarding</h3>
+        <p>
+          Designed and executed scalable partner onboarding frameworks supporting [X] integrations,
+          reducing time-to-value for new business units and reducing onboarding cycle time by [X]%.
+        </p>
+      </div>
+
+      <div class="highlight-card reveal">
+        <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <h3>Customer Experience Leadership</h3>
+        <p>
+          Built and led UI/UX and experience management teams at [Company], overseeing end-to-end
+          customer journey design and driving measurable improvements in satisfaction and retention.
+        </p>
+      </div>
+
+      <div class="highlight-card reveal">
+        <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+        <h3>Data &amp; Analytics Enablement</h3>
+        <p>
+          Championed Power BI adoption and data quality frameworks across [Company], providing
+          program leadership with real-time visibility into migration progress and risk indicators.
+        </p>
+      </div>
+
+      <div class="highlight-card reveal">
+        <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+        </svg>
+        <h3>Product &amp; Program Management</h3>
+        <p>
+          Structured complex, multi-year programs with defined workstreams, change management plans,
+          and stakeholder governance — delivering on time in regulated financial services environments.
+        </p>
+      </div>
+
+      <div class="highlight-card reveal">
+        <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <h3>Cross-Functional Stakeholder Alignment</h3>
+        <p>
+          Coordinated parallel implementation programs across geographies and business units,
+          managing executive stakeholders, vendor relationships, and internal change management concurrently.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section id="download">
+    <div class="reveal">
+      <p class="section-label">Career Document</p>
+      <h2 class="section-title">Want the full picture?</h2>
+      <p class="download-sub">
+        Download my career highlights document for a concise summary of my background,
+        key accomplishments, and areas of expertise.
+      </p>
+      <a href="kevin-career-highlights.pdf" download class="download-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download Career Highlights
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="reveal">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Let's connect</h2>
+    </div>
+    <div class="contact-grid reveal">
+
+      <a href="https://linkedin.com/in/YOUR-LINKEDIN-HANDLE" target="_blank" rel="noopener" class="contact-item">
+        <div class="contact-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
+          </svg>
+        </div>
+        linkedin.com/in/YOUR-LINKEDIN-HANDLE
+      </a>
+
+      <a href="mailto:YOUR-EMAIL@EMAIL.COM" class="contact-item">
+        <div class="contact-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        YOUR-EMAIL@EMAIL.COM
+      </a>
+
+      <a href="tel:+1YOUR-PHONE-NUMBER" class="contact-item">
+        <div class="contact-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </div>
+        YOUR-PHONE-NUMBER
+      </a>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">Kevin [Last Name]</span>
+    <p>&copy; <span id="year"></span> &nbsp;|&nbsp; Digital Transformation &amp; Product Executive</p>
+  </footer>
+
+  <script>
+    // Auto-update copyright year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
